@@ -1,0 +1,65 @@
+/* Основной фон с градиентом */
+body {
+    background: linear-gradient(135deg, #74abe2 0%, #5573ab 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Стеклянная карточка (Glassmorphism) */
+.weather-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    padding: 30px;
+}
+
+.weather-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Стилизация ввода */
+.form-control {
+    border-radius: 10px 0 0 10px;
+    border: none;
+    padding: 12px 20px;
+}
+
+.btn-primary {
+    border-radius: 0 10px 10px 0;
+    padding: 12px 25px;
+    background-color: #4a90e2;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #357abd;
+}
+
+/* История поиска */
+.history-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    margin-bottom: 8px;
+    border-radius: 10px !important;
+    transition: background 0.2s;
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Температура */
+.temp-display {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+h1, h5 {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
