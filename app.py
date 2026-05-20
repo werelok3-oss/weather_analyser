@@ -17,7 +17,7 @@ class WeatherHistory(db.Model):
 
 
 def get_weather(city_name):
-    API_KEY = "2fb25f5376fa1929f54ea60aed416d21"
+    API_KEY = "377845015d2627259e9af34de9def307"
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}&units=metric&lang=ru"
 
     try:
@@ -39,11 +39,14 @@ def index():
     current_weather = None
     if request.method == 'POST':
         city_name = request.form.get('city')
+        print(f"Ищем город: {city_name}")  # Это появится в терминале
+
         if city_name:
             data = get_weather(city_name)
             if data:
+                print(f"Данные получены: {data['temp']} градусов")
                 current_weather = data
-                # Сохраняем поиск в базу данных
+                # Сохраняем в базу
                 new_search = WeatherHistory(
                     city=data['city'],
                     temp=data['temp'],
@@ -52,6 +55,11 @@ def index():
                 )
                 db.session.add(new_search)
                 db.session.commit()
+            else:
+                print("Ошибка: API вернул пустоту (проверь ключ или название города)")
+        else:
+            print("Ошибка: имя города не получено из формы")
+
     history = WeatherHistory.query.order_by(WeatherHistory.id.desc()).limit(5).all()
     return render_template('index.html', weather=current_weather, history=history)
 
